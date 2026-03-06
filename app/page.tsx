@@ -1,65 +1,96 @@
-import Image from "next/image";
+import React from 'react';
+import type { Metadata } from 'next';
+import { LangProvider } from './context/LanguageContext';
+import Header from './components/Header';
+import HeroSection from './home/components/HeroSection';
+import PainPointsSection from './home/components/PainPointsSection';
+import SolutionSection from './home/components/SolutionSection';
+import HowItWorksSection from './home/components/HowItWorksSection';
+import FeaturesSection from './home/components/FeaturesSection';
+import ConvenienceSection from './home/components/ConvenienceSection';
+import PricingSection from './home/components/PricingSection';
+import TestimonialsSection from './home/components/TestimonialsSection';
+import SecuritySection from './home/components/SecuritySection';
+import FinalCTASection from './home/components/FinalCTASection';
+import Footer from './components/Footer';
 
-export default function Home() {
+
+export const metadata: Metadata = {
+  title: 'KlinicKonnect — Clinic Management Software for Doctors',
+  description: 'KlinicKonnect helps solo-practice doctors manage appointments, EMR, billing, and WhatsApp follow-ups from one mobile-first platform. Built for Indian clinics.',
+  alternates: {
+    canonical: '/home',
+  },
+  openGraph: {
+    title: 'KlinicKonnect — Clinic Software for Doctors',
+    description: 'One platform for appointments, EMR, billing & WhatsApp reminders.',
+    images: [{ url: '/assets/images/app_logo.webp', width: 1200, height: 630 }],
+  },
+};
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <LangProvider>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'KlinicKonnect',
+              url: 'https://klinickonnect.com',
+              logo: '/assets/images/app_logo.webp',
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+91-7980073673',
+                contactType: 'customer service',
+                email: 'info@klinickonnect.com',
+              },
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: 'KlinicKonnect',
+              applicationCategory: 'HealthApplication',
+              operatingSystem: 'Web, iOS, Android',
+              offers: {
+                '@type': 'Offer',
+                price: '24000',
+                priceCurrency: 'INR',
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  billingDuration: 'P1Y',
+                },
+              },
+              description: 'Clinic management software for solo-practice doctors in India.',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebPage',
+              name: 'KlinicKonnect — Clinic Management Software for Doctors',
+              url: 'https://klinickonnect.com/home',
+              description: 'KlinicKonnect helps solo-practice doctors manage appointments, EMR, billing, and WhatsApp follow-ups.',
+            },
+          ]),
+        }}
+      />
+
+      <main className="bg-brand-bg min-h-screen">
+        <Header />
+        <HeroSection />
+        <PainPointsSection />
+        <SolutionSection />
+        <HowItWorksSection />
+        <FeaturesSection />
+        <ConvenienceSection />
+        <PricingSection/>
+        <TestimonialsSection />
+        <SecuritySection />
+        <FinalCTASection />
+        <Footer />
       </main>
-    </div>
+    </LangProvider>
   );
 }
